@@ -59,3 +59,8 @@ spec:
 $kubectl apply -f commands.yaml
 $kubectl get pods
 $kubectl exec -it command4 -- sh
+
+##############################
+
+#pod creation using cli
+$kubectl run nginx --image=nginx --port=80 --dry-run=client -o yaml
