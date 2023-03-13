@@ -1,4 +1,4 @@
-##Affinity-required.yaml
+##Affinity-required.yaml. [In]
 
 apiVersion: v1
 kind: Pod
@@ -20,7 +20,7 @@ spec:
    
    
    
- ##Affinity-preferred.yaml
+ ##Affinity-preferred.yaml [In]
  
 apiVersion: v1
 kind: Pod
@@ -41,3 +41,33 @@ spec:
   containers:
   - name: affinity-prefferd
     image: nginx
+    
+    
+ ##Deployment level [NotIn]
+ 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+ spec:
+   affinity:
+     podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: NotIn
+            values:
+            - frontend
+   containers:
+   - name: with-node-anti-affinity
+     image: nginx
