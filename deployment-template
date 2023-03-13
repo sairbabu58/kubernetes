@@ -60,3 +60,5 @@ $kubectl rollout history deployment/test-deployment --revision 1
 $kubectl rollout history deployment/test-deployment --revision 2
 
 $kubectl rollout undo deployment/test-deployment
+
+$kubectl rollout undo deployment/test-deployment --to-revision=1
