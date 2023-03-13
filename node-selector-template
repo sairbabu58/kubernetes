@@ -1,0 +1,35 @@
+#Step 1: Verify the Label of Node
+
+$kubectl get nodes
+$kubectl describe node <node-name>
+
+#Step 2: Label Worker Node
+
+$kubectl label node <node-1> disk=hdd
+$kubectl label node <node-2> disk=ssd
+$kubectl label node <node-3> disk=hdd
+
+#Step 3: Create NodeSelector Configuration
+
+$vi nodeselector.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-pod
+    image: nginx
+  nodeSelector:
+    disk: ssd
+
+$kubectl apply -f nodeselector.yaml
+
+#Step 4: Verify
+
+$kubectl get pods -o wide
+
+#Step 5: Destroy Resources 
+
+$kubectl delete -f nodeselector.yaml
