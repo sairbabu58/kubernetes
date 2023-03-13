@@ -2,6 +2,7 @@
 
 $kubectl get nodes
 $kubectl describe node <node-name>
+$kubectl get no <nodename> --show-labels
 
 #Step 2: Label Worker Node
 
