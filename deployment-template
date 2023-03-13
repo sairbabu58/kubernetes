@@ -1,0 +1,60 @@
+$kubectl create deployment my-deployment --image=nginx --replicas 3--dry-run=client -o yaml
+
+#create deployment 
+
+$vi deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        
+$kubectl apply -f deployment.yaml
+$kubectl get deployment
+
+#Step 2: Update the Image in Deployments
+#Modify image from nginx to nginx:1.17.3
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: httpd
+        image: httpt:1.2.3
+        
+$kubectl apply -f deployment.yaml
+
+#Step 3: Check for Deployment Events
+
+$kubectl describe deployment test-deployment
+
+#Step 4: Check for Rollout History
+
+$kubectl rollout history deployment/test-deployment
+
+$kubectl rollout history deployment/test-deployment --revision 1
+$kubectl rollout history deployment/test-deployment --revision 2
