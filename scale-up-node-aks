@@ -1,0 +1,4 @@
+#login into az dashboard
+#go to your resource group
+#choose the aks cluster
+#right side click node pools -> choose your nood pools -> click (...) and click scale node pools -> scale methord (1.manual 2.autoscale) -> choose autoscale and mention the max node
