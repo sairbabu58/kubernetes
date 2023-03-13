@@ -1,7 +1,9 @@
+##Affinity-required.yaml
+
 apiVersion: v1
 kind: Pod
 metadata:
-  name: affinity-test
+  name: affinity-required
 spec:
   affinity:
     nodeAffinity:
@@ -14,4 +16,28 @@ spec:
             - small
   containers:
   - name: affinity-test
+    image: nginx
+   
+   
+   
+ ##Affinity-preferred.yaml
+ 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-preferred
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: memory
+            operator: In
+            values:
+            - high
+            - medium
+  containers:
+  - name: affinity-prefferd
     image: nginx
