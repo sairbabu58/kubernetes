@@ -98,6 +98,7 @@ all:
 ---
 
 #enable the network plugging, Container runtime, Pod CIDR, Serivce CIDR ..etc.
+$vi <kubespray>/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 
 kube_network_plugin: calico
 kube_service_addresses: 10.233.0.0/18
