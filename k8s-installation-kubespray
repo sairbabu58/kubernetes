@@ -2,6 +2,13 @@
 https://github.com/kubernetes-sigs/kubespray
 https://dev.to/admantium/kubernetes-installation-tutorial-kubespray-46ek
 
+##pre tasks
+#configure ansible on build machine
+#create the k8s nodes master/worker
+#do password less authentication
+#dns and hostname setup
+#ansible ping pong test
+
 #copy above git repo to your local machine
 $git clone https://github.com/kubernetes-sigs/kubespray
 
@@ -104,3 +111,10 @@ kube_network_plugin: calico
 kube_service_addresses: 10.233.0.0/18
 kube_pods_subnet: 10.233.64.0/18
 container_manager: containerd
+
+
+##post validation (From master node)
+$mkdir -p $HOME/.kube
+$sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$sudo cp -i /etc/kubernetes/admin.conf remote-node://$HOME/.kube/config
+$sudo chown $(id -u):$(id -g) $HOME/.kube/config
