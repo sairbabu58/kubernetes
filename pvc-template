@@ -1,3 +1,4 @@
+#referance sc name
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,6 +10,18 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: <sc-name>
+
+#without sc name
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dynamic-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
   
   
   $kubectl get sc
