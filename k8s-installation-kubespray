@@ -1,0 +1,88 @@
+##Document link.
+https://github.com/kubernetes-sigs/kubespray
+https://dev.to/admantium/kubernetes-installation-tutorial-kubespray-46ek
+
+#copy above git repo to your local machine
+$git clone https://github.com/kubernetes-sigs/kubespray
+
+#go to the kubespray directiry path
+$cd kubespray 
+
+#Copy inventory/sample as inventory/mycluster
+$cp -rfp inventory/sample inventory/mycluster
+
+#Update Ansible inventory file with inventory builder
+$declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5) #update the all ip's details for your nodes master/worker
+$CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+#Review and change parameters under inventory/mycluster/group_vars
+$cat inventory/mycluster/group_vars/                
+$cat inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml 
+
+
+#(Optional) create virtual ENV
+$KUBESPRAYDIR=$(pwd)/kubespray
+$VENVDIR="$KUBESPRAYDIR/.venv"
+$ANSIBLE_VERSION=2.12
+
+$virtualenv  --python=$(which python3) $VENVDIR
+
+$source $VENVDIR/bin/activate
+$cd <KUBESPRAYDIR>
+
+$pip install -U -r requirements.txt
+$pip install -U -r requirements-$ANSIBLE_VERSION.txt 
+
+
+#Deploy Kubespray with Ansible Playbook - run the playbook as root
+$ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
+
+
+##Deploy multy master node with external loadbalancer
+
+#add the external lb details 
+$vi inventory/mycluster/group_vars/all/all.yml 
+
+#add and validate the inventory hosts
+$vi <kubespray>/inventory/mycluster/hosts.yml
+
+---
+all:
+  hosts:
+    kmaster-0:
+      ansible_host: 10.1.13.100
+      ip: 10.1.13.100
+      access_ip: 10.1.13.100
+    kmaster-1:
+      ansible_host: 10.1.13.101
+      ip: 10.1.13.101
+      access_ip: 10.1.13.101
+    kmaster-2:
+      ansible_host: 10.1.13.102
+      ip: 10.1.13.102
+      access_ip: 10.1.13.102
+    kworker-0:
+      ansible_host: 10.1.13.103
+      ip: 10.1.13.103
+      access_ip: 10.1.13.103
+  children:
+    kube_control_plane:
+      hosts:
+        kmaster-0:
+        kmaster-1:
+        kmaster-2:
+    kube_node:
+      hosts:
+        kworker-0:
+    etcd:
+      hosts:
+        kmaster-0:
+        kmaster-1:
+        kmaster-2:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
+---
