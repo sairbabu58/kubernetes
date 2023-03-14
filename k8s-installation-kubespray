@@ -1,6 +1,7 @@
 ##Document link.
 https://github.com/kubernetes-sigs/kubespray
 https://dev.to/admantium/kubernetes-installation-tutorial-kubespray-46ek
+https://schoolofdevops.github.io/ultimate-kubernetes-bootcamp/cluster_setup_kubespray/
 
 ##pre tasks
 #configure ansible on build machine
