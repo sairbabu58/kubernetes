@@ -17,3 +17,8 @@ $kubeadm upgrade apply 1.23.0
 
 $systemctl daemon-reload
 $systemctl restart kubelet
+
+
+##Note
+#drain the node
+#moved all the application to other node
