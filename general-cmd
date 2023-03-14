@@ -1,0 +1,100 @@
+$kubectl explain deployment or cron or job or ingress (get the version, app/v1 or v1 or some other details)
+
+$kubectl get po —no-headers | wc -l 
+
+$kubectl replace —force -f file.yaml (forcefully delete the old resources and create new resources)
+
+##static pod defination
+Static pod can be run without kube-api server.
+If Kube-api is down , still you can run/create pod
+
+$vi /etc/kubernates/manifest/static-pod.yaml 
+
+
+
+##deployment strategy
+$kubeclt rollout status deployment/name
+$kubectl rollout history deployment/name
+$kubectl rollout undo deployment/name
+$oc rollout history deployment/name
+$oc rollout history deployment/name —revision 1 
+$oc rollout undo deployment/name —revision 1 —to-revision=1
+
+
+
+
+##ETCD backup:
+$from control plane node, using etcdctl tools take the etcd backup $etcdctl —key= —cert= —caret= —apiendpoints snapshot save
+$restore $etcdctl snapshot restore command (local work no api calls)
+$change the etcd.yaml file and mentioned the new path
+$wait some times, restart the po
+
+##Kubespray
+https://dev.to/admantium/kubernetes-installation-tutorial-kubespray-46ek
+https://adamtheautomator.com/kubespray/
+https://schoolofdevops.github.io/ultimate-kubernetes-bootcamp/cluster_setup_kubespray/
+https://jhooq.com/kubespray-12-steps-for-installing-a-production-ready-kubernetes-cluster/
+https://www.youtube.com/watch?v=u_1f3WyvtQE
+
+#Certificate
+$openssl genrsa -out ca.key 2048 [output ca.key]
+$openssl req -new -key ca.key -sub “/CN=KUBERNETSCA” -out ca.csr  [output ca.csr]
+$openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt [output ca.crt]
+
+
+##Role/Rolebinding
+————————
+$create role [deployment-> list, get,update,delete,create]
+$create rolebinding [username->reference role
+$oc auth can-i delete no
+$oc auth can-i create networkpolicy
+$oc auth can-i create pods —as dev-user
+$oc auth can-i delete no —as admin-user
+$oc auth can-i create po —as test-user —namespace demo
+$oc —as user-demo get no 
+
+$create a role [pod/deployment/scc, list,update,delete]
+$create a rolebinding [ref for above role and rolebindig]
+--------
+
+$oc get api-resources
+
+##Networking 
+#Check the Kubernetes installed network  
+$ll /etc/cni/net.d/ [network details]
+$ cat /opt/cni/bin/calico [script]
+
+
+##Services
+Kube-proxy is managing svc and create a iptables rules
+from node> iptables -L -t nat | grep <svc-demo>
+$oc logs kube-proxy-po
+
+##CodeDNS. Openshift internal DNS
+SVC DNSname
+
+$oc rsh po> curl app-name:8080 [if you are in same namespce]
+                   > curl app-name.projectname.svc:8080 [from same or other namespace svc]
+            
+POD DNSname:
+$oc rsh po> curl 10-128-0-100.<NS>.pod:8080
+          > curl 10-128-0-100.<NS>.pod.cluster.local:8080
+
+How its working ?? All the pods /etc/resolv.conf file is having Openshift-dns SVC IP to resolve the dns name
+
+
+
+##Storage extend
+Volume Expansion
+ 1. Add update check 'allowVolumeExpansion: true' [In side of SC ]
+ 2. Create a PVC and attached to Pod
+ 3. Check current volume size
+ 4. $oc get pvc
+ 5. $oc rsh po — df -h /data
+ 6. Increase the pvc size [just edit pvc and change the value 5Gi to 10Gi]
+ 7. $oc get pvc [you can see the latest value ]
+ 8. $oc describe pvc [Error pending for FS update]
+ 9. $o rsh po — df -h /data [Still it will show old value 5Gi]
+ 10. Delete/recreate the pod to sync it
+
+
