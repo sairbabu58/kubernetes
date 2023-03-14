@@ -43,6 +43,16 @@ $ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root
 #add the external lb details 
 $vi inventory/mycluster/group_vars/all/all.yml 
 
+---
+## External LB example config
+apiserver_loadbalancer_domain_name: "api.ocp.cloudspace.com"
+loadbalancer_apiserver:
+   address: 10.1.13.150
+#   port: 1234
+
+
+---
+
 #add and validate the inventory hosts
 $vi <kubespray>/inventory/mycluster/hosts.yml
 
