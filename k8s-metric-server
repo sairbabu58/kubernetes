@@ -1,0 +1,22 @@
+##Documentation Referred:
+https://github.com/kubernetes-sigs/metrics-server
+
+
+#Install Metric Server
+
+#(Option-1)
+$kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability.yaml
+
+#(Option-2)
+$kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+#(Option-3)
+$helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+$helm upgrade --install metrics-server metrics-server/metrics-server --namespace=metric-server
+
+#Verify
+
+$kubectl get deployment metrics-server -n <namespace>
+
+$kubectl top pods
+$kubectl top nodes
