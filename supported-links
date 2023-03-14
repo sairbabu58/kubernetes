@@ -1,0 +1,11 @@
+#image registry. helm, docker
+https://artifacthub.io/
+
+#kubernetes k8s official git repo 
+https://github.com/kubernetes-sigs
+
+#kubernetes supported git repo
+https://github.com/zealvora
+
+#helm installation configuration repo
+https://helm.sh/docs/intro/install/
