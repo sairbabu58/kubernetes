@@ -47,7 +47,7 @@ $vi inventory/mycluster/group_vars/all/all.yml
 ## External LB example config
 apiserver_loadbalancer_domain_name: "api.ocp.cloudspace.com"
 loadbalancer_apiserver:
-   address: 10.1.13.150
+   address: 10.1.100.150
 #   port: 1234
 
 
@@ -60,21 +60,21 @@ $vi <kubespray>/inventory/mycluster/hosts.yml
 all:
   hosts:
     kmaster-0:
-      ansible_host: 10.1.13.100
-      ip: 10.1.13.100
-      access_ip: 10.1.13.100
+      ansible_host: 10.1.100.100
+      ip: 10.1.100.100
+      access_ip: 10.1.100.100
     kmaster-1:
-      ansible_host: 10.1.13.101
-      ip: 10.1.13.101
-      access_ip: 10.1.13.101
+      ansible_host: 10.1.100.101
+      ip: 10.1.100.101
+      access_ip: 10.1.100.101
     kmaster-2:
-      ansible_host: 10.1.13.102
-      ip: 10.1.13.102
-      access_ip: 10.1.13.102
+      ansible_host: 10.1.100.102
+      ip: 10.1.100.102
+      access_ip: 10.1.100.102
     kworker-0:
-      ansible_host: 10.1.13.103
-      ip: 10.1.13.103
-      access_ip: 10.1.13.103
+      ansible_host: 10.1.100.103
+      ip: 10.1.100.103
+      access_ip: 10.1.100.103
   children:
     kube_control_plane:
       hosts:
