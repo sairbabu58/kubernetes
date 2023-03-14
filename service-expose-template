@@ -9,3 +9,17 @@ $kubectl get nodes -o wide
 $curl <WORKER-NODE-IP>:<NODEPORT>
 
 $kubectl expose pod nginx2 --name named-svc --port=80 --target-port=custom-http --type=NodePort
+
+##Yaml template
+
+apiVersion: v1
+kind: Service
+metadata:
+   name: test-nodeport
+spec:
+   selector:
+     type: demo
+   type: NodePort
+   ports:
+   - port: 80
+     targetPort: 80
