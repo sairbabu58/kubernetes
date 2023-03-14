@@ -1,0 +1,16 @@
+#install helm
+https://helm.sh/docs/intro/install/
+
+
+#Artifacthub for all the images
+https://artifacthub.io/
+
+#Deploying Jenkins Helm Chart
+
+$helm repo add jenkins https://charts.jenkins.io
+$helm repo update
+$helm install my-jenkins jenkins/jenkins
+
+$helm list
+
+$helm uninstall my-jenkins
