@@ -23,6 +23,9 @@ https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/azure
 #Azure cli comands for create aks cluster
 https://learn.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 
+#K8s official documents
+https://github.com/kubernetes/ (search: dashboard)
+
 
 
 
