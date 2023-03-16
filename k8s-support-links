@@ -11,6 +11,11 @@ https://github.com/zealvora
 https://helm.sh/docs/intro/install/
 
 
+#k8s external DNS (AWS, Azure, Local ..etc)
+https://github.com/kubernetes-sigs/external-dns
+https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/azure.md
+
+
 
 
 
