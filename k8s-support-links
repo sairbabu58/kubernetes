@@ -15,9 +15,9 @@ https://helm.sh/docs/intro/install/
 #if you want to expose your svc internal(192.168.56.10) or external(25.16.100.89) over ingress, its require to manage sub dns entry for you
 #example your dns domain is cloudsheep.com. sub domain is here myapp.cloudsheep.com or helloapp.cloudsheep.com
 https://github.com/kubernetes-sigs/external-dns
+
+#Azure deployment k8s external DNS
 https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/azure.md
-
-
 
 
 
