@@ -1,9 +1,11 @@
 #download az client for mac os 
-$brew update && brew install azure-cli
+$ brew update && brew install azure-cli
 
 #log to az cluster using az client tools
-$az login
-$az aks get-credentials --resource-group <resource_group_name> --name <cluster_name>
+$ az login
+$ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name>
+
+$ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name> --file <custom-location>
 
 #get the cluster details
-$kubectl cluster-info
+$ kubectl cluster-info
