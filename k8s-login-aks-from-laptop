@@ -4,6 +4,7 @@ $ brew update && brew install azure-cli
 #log to az cluster using az client tools
 $ az login
 $ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name>
+$ az aks get-credentials -g <resource_group_name> -n <cluster_name>
 
 $ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name> --file <custom-location>
 
