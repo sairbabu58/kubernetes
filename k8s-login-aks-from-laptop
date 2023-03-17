@@ -7,5 +7,7 @@ $ az aks get-credentials --resource-group <resource_group_name> --name <cluster_
 
 $ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name> --file <custom-location>
 
+$ az aks get-credentials --resource-group <resource_group_name> --name <cluster_name> --admin --file <custom-location> 
+
 #get the cluster details
 $ kubectl cluster-info
