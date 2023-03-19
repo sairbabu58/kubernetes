@@ -28,6 +28,10 @@ https://learn.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 https://github.com/kubernetes/ (search: dashboard)
 
 
+#Cert-Manager for k8s and OpenShift
+https://cert-manager.io/docs/installation/
+
+
 
 
 Certified Kubernetes Administrator: https://www.cncf.io/certification/cka/
