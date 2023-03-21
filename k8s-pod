@@ -9,6 +9,9 @@ spec:
   containers:
   -  image: count
      name: busybox
+     ports:
+     - containerPort: 8080
+       protocol: TCP
 
 $kubectl apply -f commands.yaml
 
@@ -24,6 +27,9 @@ spec:
   -  image: count
      name: busybox
      command: ["sleep","3600"]
+     ports:
+     - containerPort: 8080
+       protocol: TCP
 
 $kubectl apply -f commands.yaml
 
@@ -40,6 +46,9 @@ spec:
      name: busybox
      command: ["sleep"]
      args: ["3600"]
+     ports:
+     - containerPort: 8080
+       protocol: TCP
      
 $kubectl apply -f commands.yaml
 
