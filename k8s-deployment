@@ -21,6 +21,9 @@ spec:
       containers:
       - name: httpd
         image: httpd
+        ports:
+        - containerPort: 8080
+          protocal: TCP
         
 $kubectl apply -f deployment.yaml
 $kubectl get deployment
@@ -44,7 +47,10 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: httpt:1.2.3
+        image: httpd:1.2.3
+        ports:
+        - containerPort: 8080
+          protocal: TCP
         
 $kubectl apply -f deployment.yaml
 
