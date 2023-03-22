@@ -1,0 +1,40 @@
+# Ingress config file and it's using two services
+
+
+$ vi ingress.yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-1
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /app1
+        pathType: Prefix
+        backend:
+          service:
+            name: my-app1
+            port:
+              number: 80
+  - http:
+      paths:
+      - path: /app2
+        pathType: Prefix
+        backend:
+          service:
+            name: my-app2
+            port:
+              number: 80
+              
+              
+ $ kubectl apply -f ingress.yaml -n <namespace>
+ 
+ $ kubectl get ingress -n <namespace>
+ $ get the external IP 
+ $ add the DNS record or use (external DNS deployment)
+ $ from browser, use external IP/DNS (example: 29.100.45.71/app1 , 29.100.45.71/app2 )
