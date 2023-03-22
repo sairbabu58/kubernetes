@@ -1,3 +1,12 @@
+# Ingress Controller deployment on Azure or any other provider
+
+https://kubernetes.github.io/ingress-nginx/deploy
+https://docs.nginx.com/nginx-ingress-controller/installation
+https://artifacthub.io
+https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx
+
+
+
 # Ingress config file and it's using two services
 
 
