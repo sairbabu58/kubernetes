@@ -6,6 +6,21 @@ https://artifacthub.io
 https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx
 
 
+# Helm based installation
+$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ helm repo update
+$ helm show values ingress-nginx/ingress-nginx (get the additional configuration details)
+$ helm install ingress-nginx ingress-nginx/ingress-nginx -n <namespace>
+
+
+# Helm based uninstall
+$ helm uninstall ingress-nginx -n <namespace>
+
+#Helm based upgrade
+$ helm upgrade [RELEASE_NAME] [CHART] --install
+
+
+
 
 # Ingress config file and it's using two services
 
