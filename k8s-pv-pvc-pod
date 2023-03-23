@@ -41,8 +41,8 @@ spec:
       - mountPath: "/data"
         name: my-volume
   volumes:
-    - name: my-volume
-      persistentVolumeClaim:
-        claimName: pvc
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: pvc
 
 
