@@ -7,11 +7,11 @@ metadata:
   name: command
 spec:
   containers:
-  -  image: count
-     name: busybox
-     ports:
-     - containerPort: 8080
-       protocol: TCP
+  - image: count
+    name: busybox
+    ports:
+    - containerPort: 8080
+      protocol: TCP
 
 $kubectl apply -f commands.yaml
 
@@ -24,12 +24,12 @@ metadata:
   name: command2
 spec:
   containers:
-  -  image: count
-     name: busybox
-     command: ["sleep","3600"]
-     ports:
-     - containerPort: 8080
-       protocol: TCP
+  - image: count
+    name: busybox
+    command: ["sleep","3600"]
+    ports:
+    - containerPort: 8080
+      protocol: TCP
 
 $kubectl apply -f commands.yaml
 
@@ -42,13 +42,13 @@ metadata:
   name: command3
 spec:
   containers:
-  -  image: count
-     name: busybox
-     command: ["sleep"]
-     args: ["3600"]
-     ports:
-     - containerPort: 8080
-       protocol: TCP
+  - image: count
+    name: busybox
+    command: ["sleep"]
+    args: ["3600"]
+    ports:
+    - containerPort: 8080
+      protocol: TCP
      
 $kubectl apply -f commands.yaml
 
@@ -61,9 +61,9 @@ metadata:
   name: command4
 spec:
   containers:
-  -  image: count
-     name: busybox
-     args: ["sleep","3600"]
+  - image: count
+    name: busybox
+    args: ["sleep","3600"]
 
 $kubectl apply -f commands.yaml
 $kubectl get pods
