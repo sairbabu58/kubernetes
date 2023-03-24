@@ -26,17 +26,17 @@ https://cert-manager.io/docs/configuration/acme/http01/
 
 
 apiVersion: cert-manager.io/v1
-kind: Issuer
+kind: Certificate
 metadata:
-  name: example-issuer
+  name: yourdomain-com-tls
 spec:
-  acme:
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      name: example-issuer-account-key
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
+  secretName: yourdomain-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: yourdomain.com
+  dnsNames:
+    - yourdomain.com
+    - www.yourdomain.com
 
 
