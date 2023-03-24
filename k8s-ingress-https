@@ -38,5 +38,36 @@ spec:
   dnsNames:
     - yourdomain.com
     - www.yourdomain.com
+    
+    
+    
+    
+    
+----
+
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: yourdomain-com-tls
+spec:
+  secretName: yourdomain-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: yourdomain.com
+  dnsNames:
+    - yourdomain.com
+    - www.yourdomain.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - yourdomain.com
+          - www.yourdomain.com
+          
+          
+          
 
 
