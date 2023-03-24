@@ -22,7 +22,7 @@ spec:
 -----
 
 #Cert-Manager Issuer
-https://cert-manager.io/docs/configuration/acme/http01/
+https://cert-manager.io/docs/tutorials/acme/http-validation/
 
 
 apiVersion: cert-manager.io/v1
