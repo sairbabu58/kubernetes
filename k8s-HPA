@@ -1,0 +1,34 @@
+# HPA (Horizontal Pod Autoscaler) configuration
+
+# create demo/test application
+
+$ oc new-app hpa
+$ oc new-app httpd -n hpa
+$oc get po -n hpa
+
+# set the resourcs in deployment file
+
+$ oc edit deployment/httpd -n hpa
+...
+resources:
+  cpu: 100m
+  memory: 200Mi
+ ...
+ 
+ # Create HPA
+ 
+ $ oc autoscaale --min=2 --max=8 --cpu-percent=80 deployment/httpd -n hpa
+ 
+ $ oc get hpa
+ 
+ # inject the load to the application
+ 
+ $ oc get po -n hpa
+ $oc rsh <pod-name> -- yes > /dev/null &
+ 
+ $oc rsh <pod-name>
+   >$ yes > /dev/null &
+   
+ $ oc get hpa -n hpa
+ $ oc get po -n hpa
+ 
