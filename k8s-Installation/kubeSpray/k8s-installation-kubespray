@@ -135,3 +135,10 @@ $ mkdir ~/.kube
 $ scp -r ubuntu@MASTER_HOST_IP:/etc/kubernetes/admin.conf  ~/.kube/config
 
 $ kubectl get nodes
+$ kubecolor get no
+
+
+
+
+
+
