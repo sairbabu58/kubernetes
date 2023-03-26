@@ -6,6 +6,7 @@ https://schoolofdevops.github.io/ultimate-kubernetes-bootcamp/cluster_setup_kube
 ##pre tasks
 #configure ansible on build machine
 #create the k8s nodes master/worker
+# create and configure haproxy server if you are plannning to configure multi master nodes
 #do password less authentication
 #dns and hostname setup
 #ansible ping pong test
