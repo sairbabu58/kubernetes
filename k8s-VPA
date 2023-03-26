@@ -7,6 +7,8 @@ $ git clone https://github.com/kubernetes/autoscaler.git
 $ cd vertical-pod-autoscaler/hack
 $ ./vpa-up.sh
 
+(Note: For openshift, install VPA controller using operator and follow the rest of same process)
+
 # create test application
 $ kubectl apply -y httpd.yaml
 
