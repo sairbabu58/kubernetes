@@ -9,20 +9,20 @@ kind: Deployment
 metadata:
   name: test-deployment
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
-      tier: frontend
+      name: nginx
   template:
     metadata:
       labels:
-        tier: frontend
+        name: nginx
     spec:
       containers:
-      - name: httpd
-        image: httpd
+      - name: nginx
+        image: nginx
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP
         
 $kubectl apply -f deployment.yaml
@@ -36,21 +36,29 @@ kind: Deployment
 metadata:
   name: test-deployment
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
-      tier: frontend
+      name: nginx
   template:
     metadata:
       labels:
-        tier: frontend
+        name: nginx
     spec:
       containers:
-      - name: httpd
-        image: httpd:1.2.3
+      - name: nginx
+        image: nginx:<version>
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP
+          
+
+# Rollout example
+...
+resources:
+  cpu: 100m
+  memory: 200Mi
+...
         
 $kubectl apply -f deployment.yaml
 
@@ -68,3 +76,11 @@ $kubectl rollout history deployment/test-deployment --revision 2
 $kubectl rollout undo deployment/test-deployment
 
 $kubectl rollout undo deployment/test-deployment --to-revision=1
+
+
+
+
+$ kubectl expose deployment test-deployment --name test-svc --port=80 --target-port=80 --type=NodePort
+
+
+
