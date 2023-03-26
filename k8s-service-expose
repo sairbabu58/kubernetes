@@ -8,7 +8,7 @@ $kubectl get nodes -o wide
 
 $curl <WORKER-NODE-IP>:<NODEPORT>
 
-$kubectl expose pod nginx2 --name named-svc --port=80 --target-port=custom-http --type=NodePort
+$kubectl expose pod nginx2 --name named-svc --port=80 --target-port=80 --type=NodePort
 
 ##Yaml template
 
