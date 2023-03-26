@@ -1,0 +1,48 @@
+# VPA (Virtical Pod Autoscaler) documents for install and configure
+https://github.com/kubernetes/autoscaler
+https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+
+# Clone the repo and get the installation files.
+$ git clone https://github.com/kubernetes/autoscaler.git
+$ cd vertical-pod-autoscaler/hack
+$ ./vpa-up.sh
+
+# create test application
+$ kubectl apply -y httpd.yaml
+
+# Set the resources on deployment file
+
+spec:
+   replicas: 2
+   ... 
+    resources
+       requests:
+          cpu: 100m
+          memory: 200Mi
+          
+# Now apply the VPA 
+$ kubectl apply -f vpa.yaml
+
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: my-app-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       my-app
+  updatePolicy:
+    updateMode: "Auto"
+    
+    
+# Watch the VPA remidiation
+$ kubectl get vpa
+$ kubectl describe vpa (note: it will take few minutes to get reflect)
+
+# Once  remidiation value will available the old pod will get delete and the new pod will get create with new cpu and memory value as per the VPA
+
+$ kubectl get po 
+
+
+
