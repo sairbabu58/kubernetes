@@ -37,6 +37,20 @@ spec:
 $ kubeclt get IPAddressPool
 
 
+
+Example:
+...
+apiVersion: metallb.io/v1alpha1
+kind: AddressPool
+metadata:
+  namespace: metallb-system
+  name: doc-example
+spec:
+  protocol: layer2
+  addresses:
+  - 192.168.1.10-192.168.1.20
+...
+
   
 
 
