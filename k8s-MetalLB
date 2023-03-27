@@ -52,5 +52,24 @@ spec:
 ...
 
   
+# Create a demo application and test the connectivity
+
+$ kubectl create -f deployment.yaml
+$ kubectl create -f service.yaml (service Type: LoadBalancer)
+$ kubectl get svc (get the svc external IP)
+$ curl <external-IP:port>/10.1.10.100:80
+
+
+# Troubleshooting. If its not woking 
+# get the SVC externalIP
+# add above external IP to node interface
+
+$ kubectl get svc
+$ ssh node
+$ ip addr add 10.1.10.100/24 dev ens192
+
+$ curl 10.1.10.100:80
+
+
 
 
