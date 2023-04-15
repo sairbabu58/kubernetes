@@ -1,1 +1,64 @@
+# Trident NetApp storage installation and configuration for OpenShift and K8S cluster
+
+https://cloud.redhat.com/blog/trident-openshift-a-netapp-red-hat-solution-to-dynamically-provision-storage-for-openshift
+
+https://gist.github.com/Bill-tran/5e2ab062a9028bf693c934146249e68c (OpenSSl Issues)
+
+https://github.com/NetApp/trident/releases
+
+# Steps:
+1) Download trident binary 
+https://github.com/NetApp/trident/releases
+
+2) Install trident cli
+$ cp /path-to-file/tridentctl /usr/local/sbin
+$ cp /path-to-file/tridentctl /usr/local/bin
+
+3) Create namespace
+$ kubectl ns create trident-ns
+
+4) Install tridnet controller
+$ tridentctl install -n trident-ns
+$ kubectl get pods -n trident-ns -o wide
+
+5) Configure backend storage
+$ vi backend.j2
+# cat backend.json
+{
+"debug":true,
+"managementLIF":"10.11.12.13",
+"dataLIF":"10.11.12.14",
+"svm":"test",
+"backendName": "nas_backend",
+"aggregate":"aggr_01",
+"username":"admin",
+"password":"",
+"storageDriverName":"ontap-nas",
+"storagePrefix":"bala_",
+"version":1
+}
+$ tridentctl create backend -f backend.j2 -n trident-ns
+
+6) Create StorageClass
+$ vi sc.yaml
+# cat sc.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+name: nas
+provisioner: csi.trident.netapp.io
+parameters:
+backendType: "ontap-nas"
+snapshots: "True"
+provisioningType: "thin"
+encryption: "true"
+$ kubectl apply -f sc.yaml
+
+7) Create pvc
+8) Create po
+9) Add pvc to po
+
+
+
+
 
