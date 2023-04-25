@@ -21,9 +21,9 @@ $sysctl --system
 
 $apt-get install -y containerd
 $mkdir -p /etc/containerd
-$containerd config default > /etc/containerd/config.toml
+$containerd config default > /etc/containerd/config.yaml
 
-$vi /etc/containerd/config.toml
+$vi /etc/containerd/config.yaml
  SystemdCgroup = true ##change false to true
  
 $systemctl restart containerd
