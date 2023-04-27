@@ -1,0 +1,8 @@
+# Create a pod name nginx and add label app=green
+$ k run --help
+$ k create nginx --image=nginx:latest --labels="app=green"
+
+# Create a service name demo with port 8080
+$ k create service --help
+$ k create service clusterip 
+
