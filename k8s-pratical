@@ -14,6 +14,7 @@ $ k expose po nginx --port 8080 --target-port 80 --name demo-02-svc
 
 ETCD Backup and Restore
 -----------------------
+Note: For ETCD backup, its require cert and keyfile. but restore its really not require
 $ etcdctl snapshot --help
 
 $ cat /etc/kubernetes/mainfest/kube-apiserver.yaml  (get the etcd cert, endpoints details)
@@ -23,7 +24,13 @@ $ etcdctl --endpoints <endpoint-ip:port> --cacert="" --cert="" --key="" snapshot
 
 $ etcdctl --write-out=table snapshot status /opt/today.db
 
-
+$ etcdctl snapshot restore --data-dir /var/lib/1st-etcd-backup /opt/today.db 
+$ ll /var/lib/1st-etcd-backup 
+$ vi /etc/kubernetes/manifest/etcd.yaml
+   hostPath:
+      path: /var/lib/1st-etcd-backup
+      
+  
 
 
 
