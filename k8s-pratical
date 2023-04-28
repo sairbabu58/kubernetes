@@ -10,3 +10,42 @@ $ k expose po nginx --port 8080 --target-port 80 --name demo-02-svc
 
 
 
+
+
+ETCD Backup and Restore
+-----------------------
+$ etcdctl snapshot --help
+
+$ cat /etc/kubernetes/mainfest/kube-apiserver.yaml  (get the etcd cert, endpoints details)
+$ cat /etc/kubernetes/mainfest/etcd.yaml            (get the etcd cert, endpoints details)
+
+$ etcdctl --endpoints <endpoint-ip:port> --cacert="" --cert="" --key="" snapshot save /opt/today.db
+
+$ etcdctl --write-out=table snapshot status /opt/today.db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Json Query:
+-----------
+$ kc get no -ojson
+$ kc get no -o jsonpath='{.items[*].status.nodeInfo}'
+$ kc get no -o jsonpath='{.items[*].status.nodeInfo.osImage}'
+
+$ kc get no -o jsonpath='{.items[*].status.capacity.cpu}'
+$ 
+
+
+
+
+
