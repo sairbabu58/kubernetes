@@ -4,5 +4,9 @@ $ k create nginx --image=nginx:latest --labels="app=green"
 
 # Create a service name demo with port 8080
 $ k create service --help
-$ k create service clusterip 
+$ k create service clusterip demo-svc --port=80:80 (need to edit svc and add the selector app=nginx )
+$ k expose po nginx --port 8080 --target-port 80 --name demo-02-svc
+
+
+
 
