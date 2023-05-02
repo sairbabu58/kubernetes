@@ -46,6 +46,7 @@ $ kubectl auth can-i watch pods -n demo --as john
 
 $ kubectl create rolebinding --help
 $ kubectl create rolebinding john-developer --role=developer --user=john -n demo
+$ kubectl describe rolebinding john-developer -n demo
 
 $ kubectl auth can-i create pods -n demo --as john
 $ kubectl auth can-i watch pods -n demo --as john
