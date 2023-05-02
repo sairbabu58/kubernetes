@@ -57,6 +57,8 @@ $ kubectl create sa demo-sa
 $ kubectl create clusterrole pv-role --verb=get --resource=persistentvolumes 
 $ kubectl create clusterrolebinding pv-binding --clusterrole=pv-role --serviceaccount=<namespace>:sa-name
 
+$ kubectl run pv-viewer --image=radis --serviceaccount=demo-sa
+
 
 
 
