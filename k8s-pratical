@@ -12,7 +12,7 @@ $ k expose po nginx --port 8080 --target-port 80 --name demo-02-svc
 
 
 
-ETCD Backup and Restore
+ETCD Backup and Restore:
 -----------------------
 Note: For ETCD backup, its require cert and keyfile. but restore its really not require
 $ etcdctl snapshot --help
@@ -32,9 +32,23 @@ $ vi /etc/kubernetes/manifest/etcd.yaml
       
   
 
+Role and Rolebinding:
+---------------------
+$ kubectl create role --help
+$ kubectl crate role developer --verb=crate,get,list,update,delete --resource=pod -n demo
+$ kubectl describe role developer -n demo
 
+$ kubectl auth --help
+$ kubectl auth can-i --help
+$ kubectl auth can-i get pods -n demo --as john
+$ kubectl auth can-i create pods -n demo --as john
+$ kubectl auth can-i watch pods -n demo --as john
 
+$ kubectl create rolebinding --help
+$ kubectl create rolebinding john-developer --role=developer --user=john -n demo
 
+$ kubectl auth can-i create pods -n demo --as john
+$ kubectl auth can-i watch pods -n demo --as john
 
 
 
