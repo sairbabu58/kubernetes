@@ -73,8 +73,12 @@ $oc logs kube-proxy-po
 ##CodeDNS. Openshift internal DNS
 SVC DNSname
 
+Note:
+$ oc get svc (get the svc-name)
+
 $oc rsh po> curl app-name:8080 [if you are in same namespce]
                    > curl app-name.projectname.svc:8080 [from same or other namespace svc]
+                   > curl svc-name.projectname.svc:8080
             
 POD DNSname:
 $oc rsh po> curl 10-128-0-100.<NS>.pod:8080
