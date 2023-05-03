@@ -30,6 +30,15 @@ $ vi /etc/kubernetes/manifest/etcd.yaml
    hostPath:
       path: /var/lib/1st-etcd-backup
       
+
+Note: If Etcd is running as a systemd
+   1) Take backup using same above command
+   2) $ rm -rf /var/lib/etcd/*
+   3) etcdctl snapshot restore --data-dir=/var/lib/etcd /opt/today.db
+   4) $ systemctl restart etcd
+
+
+      
   
 
 Role and Rolebinding:
