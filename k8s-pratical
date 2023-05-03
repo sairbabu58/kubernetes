@@ -71,6 +71,20 @@ $ kubectl run pv-viewer --image=radis --serviceaccount=demo-sa
 
 
 
+Taint and tolerations:
+----------------------
+$ kubectl taint --help
+$ kubectl taint no/node-name key1=value1:NoSchedule
+
+$ add tolerations on pod deployment file
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoSchedule"
+
+
+
 
 Json Query:
 -----------
