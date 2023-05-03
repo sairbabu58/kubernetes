@@ -79,7 +79,10 @@ $ kc get no -o jsonpath='{.items[*].status.nodeInfo}'
 $ kc get no -o jsonpath='{.items[*].status.nodeInfo.osImage}'
 
 $ kc get no -o jsonpath='{.items[*].status.capacity.cpu}'
-$ 
+
+
+$ kc get no -o jsonpath='{.item[*].status.addresses[*].address}'
+$ kc get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}'
 
 
 
