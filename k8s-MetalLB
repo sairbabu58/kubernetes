@@ -6,7 +6,8 @@ $ sipcalc 10.1.13.0/24
 $ sipcalc 10.1.13.0/16
 $ sipcalc 10.1.13.0/8
 
-# Check the kube-proxy mode and set the values for strictARP (Example: mode: "" then strictARP: "false" // mode: "ipvs" then strictARP: "true")
+# Check the kube-proxy mode and set the values for strictARP 
+(Example: if mode: "" then strictARP: "false" // if mode: "ipvs" then strictARP: "true")
 $ kubectl edit configmap -n kube-system kube-proxy
 
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
