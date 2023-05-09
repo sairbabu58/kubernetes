@@ -22,11 +22,11 @@ prerequisite:
     13) kops validate cluster --name kops.k8s.local (Delete old kubeconfig file if already existing with old cluster details)
     
     
-    # How to regenerate kubeconfig file
-    ```
+    ### How to regenerate kubeconfig file
+    
     $ kops update cluster --name kops.k8s.local --yes
     
-    ```
+    
     
     
     
