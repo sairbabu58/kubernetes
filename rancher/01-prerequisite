@@ -1,0 +1,16 @@
+# install Rancher Kubernetes Engine (RKE)
+https://rke.docs.rancher.com/installation
+
+prerequisite:
+------------
+1) Build Machine
+2) Node instalation and configuration (1 master, 2 workers)
+3) Download rke binary
+https://github.com/rancher/rke/releases
+4) $ chmod +x rke ; cp rke /usr/sbin
+5) rke --help
+
+
+6) Install kubectl cli
+
+
