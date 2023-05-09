@@ -42,7 +42,7 @@ $ build> mkdir cluster
   
 # Up the cluster
   $ rke up
-  it will take several time to get cluster UP
+  it will take several time to get the cluster on up state
   $ ls (kube_config_cluster.yaml, cluster.yaml, cluster.rkestate)
   
   
