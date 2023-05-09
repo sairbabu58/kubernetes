@@ -1,0 +1,8 @@
+# if you missed or deleted admin.conf/kubeconfig file from master node and from your home directort, how to regenerate admin.conf file again
+
+Steps:
+  1) Login to master node
+  2) kubeadm init phase kubeconfig admin --apiserver-advertise-address=<master-Ip> or <LB-Ip> --cert-dir /etc/kubernetes/pki
+  3) export KUBECONFIG=/etc/kubernetes/admin.conf
+  
+  
