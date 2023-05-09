@@ -23,7 +23,10 @@ prerequisite:
     
     
     # How to regenerate kubeconfig file
-    ```$ kops update cluster --name kops.k8s.local --yes```
+    ```
+    $ kops update cluster --name kops.k8s.local --yes
+    
+    ```
     
     
     
