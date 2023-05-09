@@ -1,0 +1,16 @@
+# Install RKE 
+
+Note:
+ master0 192.168.56.1
+ worker0 192.168.56.2
+ worker1 192.168.56.3
+ 
+ 
+Password less autnentication to all the node:
+$ build> ssh-copy-id master0
+         ssh-copy-id worker0
+         ssh-copy-id worker1
+
+
+ 
+ 
