@@ -1,1 +1,14 @@
+# Install K8S cluster on AWS using kops
+
+prerequisite:
+-------------
+  1) kops binary
+  2) aws cli
+  3) s3 bucket
+  
+  Steeps:
+    1) Install the kops binary
+    2) Install the aws cli
+    3) connect to aws cluster using cli
+    4) create s3 bucket (BucketName:<name> , Block all public access (No) , Bucket Versioning (Enabled))
 
