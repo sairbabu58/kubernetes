@@ -5,11 +5,50 @@ Note:
  worker0 192.168.56.2
  worker1 192.168.56.3
  
- 
-Password less autnentication to all the node:
-$ build> ssh-copy-id master0
-         ssh-copy-id worker0
-         ssh-copy-id worker1
+$ build> mkdir cluster
+       > rke config
+             -> ssh-key: {}                                            (ssh-key path)
+             -> number of hosts: 3                                     (total number of hosts master/worker)
+             -> ssh address of host1: 192.168.56.1                     (master)
+             -> ssh port number 22: {}                                 (default ssh port)
+             -> ssh user host: root                                    (username for ssh)
+             -> is this host 192.168.56.1 a controlplane host: yes     (if its controlplane(yes) else no)
+             -> is this host 192.168.56.1 a worker host: no            (if its controlplane(yes) else no)
+             -> is this host 192.168.56.1 a etcd host: yes             (etcd host)
+             -> over write hostname: {}                                (change the hostname)
+             -> internal ip: {}                                        (mention the internal ip)
+             -> docker soket path: {}                                  (runtime path)
+             
+             
+             -> same can repet for all other hosts based on cluster role(controlplane,worker,etcd)
+
+             -> once all node configuration is done
+             
+             -> network plugin type (flannel, calico, weave, canel): calico
+             -> authentication strategy [x509]: {}                     (cluster authentication type)
+             -> authorization mode[rbac,node]: {}                      (cluster authorization type)
+             -> kubernetes docker images[rancher/hyperkube:v1.18.20]: {} 
+             -> cluster domain[cluster.local]: {}
+             -> service cluster ip address[10.43.0.0/16]: {}            (service ip range)
+             -> enable pod security policy[n]:                          
+             -> cluster network cidr[10.42.0.0/16]: {}                  (pods ip range)
+             -> cluster dns server ip[10.43.0.10]: {}                   (cluster internal dns)
+             -> 
+   
+# Validate the config file
+  $ build/cluster> ls
+  $ cat config.yaml
+  $ validate the details
+  
+# Up the cluster
+  $ rke up
+  it will take several time to get cluster UP
+  $ ls (kube_config_cluster.yaml, cluster.yaml, cluster.rkestate)
+  
+  
+  
+         
+  
 
 
  
