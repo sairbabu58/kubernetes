@@ -11,4 +11,22 @@ prerequisite:
     2) Install the aws cli
     3) connect to aws cluster using cli
     4) create s3 bucket (BucketName:<name> , Block all public access (No) , Bucket Versioning (Enabled))
+    5) aws s3 ls
+    6) kops get cluster
+    7) export KOPS_STATE_STORE=s3://<s3-bucketname>
+    8) kops create cluster --name kops.k8s.local --zones eu-west-1a --master-size t2-micro --node-size t2-micro (Enter)
+    9) review the configuration details
+    10) kops update cluster --name kops.k8s.local --yes (you can get this command from above output)
+    11) kops get cluster
+    12) kops validate cluster --name kops.k8s.local (Exeute this command after some times. once cluster is ready)
+    13) kops validate cluster --name kops.k8s.local (Delete old kubeconfig file if already existing with old cluster details)
+    
+    
+    # How to regenerate kubeconfig file
+    $ kops update cluster --name kops.k8s.local --yes
+    
+    
+    
+    
+    
 
