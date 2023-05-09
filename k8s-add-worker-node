@@ -1,0 +1,9 @@
+# How to add worker nodes on k8s cluster as a day2 operation
+
+Steps:
+  0) Note: install and configured all prerequisite on worker node
+  1) kubeadm token list
+  2) kubeadm token create --print-join-command
+  3) get the token and execute on new worker node
+  
+  
