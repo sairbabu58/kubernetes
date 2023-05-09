@@ -20,11 +20,17 @@ prerequisite:
     11) kops get cluster
     12) kops validate cluster --name kops.k8s.local (Exeute this command after some times. once cluster is ready)
     13) kops validate cluster --name kops.k8s.local (Delete old kubeconfig file if already existing with old cluster details)
-    
-    
-    ### How to regenerate kubeconfig file
-    
-    $ kops update cluster --name kops.k8s.local --yes
+
+# How to regenerate kubeconfig file
+  $ kops update cluster --name kops.k8s.local --yes
+  
+# How to add or delete node 
+  $ kops get ig
+  $ kops get instancegroup
+  $ kops edit ig/<master/worker> (maxsize: 3,  minsize: 3)
+  $ kops update cluster --yes
+  $ kops rolling-update cluster
+  $ kubectl get no (it will take a while)
     
     
     
