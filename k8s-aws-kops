@@ -32,9 +32,10 @@ prerequisite:
   $ kops rolling-update cluster
   $ kubectl get no (it will take a while)
     
-    
-    
-    
+#Delete the cluster
+  $ kops delete cluster --name <cluster-name>
+  $ kops delete cluster --name <cluster-name> --yes
+  
     
     
     
