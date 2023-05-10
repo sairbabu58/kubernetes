@@ -1,0 +1,5 @@
+# how to crate a single node of kubernetes cluster
+
+$ curl https://get.k3s.io | sh
+
+$ kubectl get no
