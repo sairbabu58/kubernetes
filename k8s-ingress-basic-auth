@@ -21,8 +21,8 @@ $ kubectl get svc -n ingress-test
 $ kworker0> curl -v <svc-ip:8080> 'its working'
 
 $ htpasswd -c auth babuni
-  password: Smile@12345#
-  reenter: Smile@12345#
+  password: Smile
+  reenter: Smile
   
   Note: password file name should be 'auth' if you providing other name it will not work
         Example: htpasswd -c password babuni
@@ -32,7 +32,7 @@ $ kubectl edit secret/ingress-auth -n ingress-test
 
 apiVersion: v1
 data:
-  auth: YmFidW5pOiRhcHIxJDlKc2x4UlptJFRRWjYzWmNrci5WS0EyUmM2VFlYYi8K
+  auth: YmFidW5pOiRhcHIxJDlKc2JFRRWjYzWmNrci5WS0
 kind: Secret
 metadata:
   creationTimestamp: "2023-05-10T10:08:23Z"
