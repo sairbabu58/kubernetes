@@ -1,0 +1,12 @@
+# Run and security scan the k8s cluster 
+https://github.com/aquasecurity/kube-bench
+
+Steps:
+----
+1) copy the job.yaml file
+2) $ vi job.yaml
+3) $ kubectl apply -f job.yaml -n kubebench
+4) Wait for kubebench pod status move to complated 
+5) kubectl get po <kube-bench-podname>
+6) validate the issues
+
