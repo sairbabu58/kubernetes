@@ -1,0 +1,34 @@
+# Access application with username and password
+
+
+Steps:
+  1) Deploy ingress controller
+  2) Create application
+  3) Create service
+  4) Create htpasswd file
+  5) Create secret
+  6) Create ingress
+  
+  
+  
+Pritical:
+---------
+$ deployed the ingress controller
+
+$ kubectl create deployment demo-01 --image nginx -n ingress-test
+$ kubectl expose deployment demo-01 --name demo-01-svc --port=8080 --target-port=80
+$ kubectl get svc -n ingress-test
+$ kworker0> curl -v <svc-ip:8080> 'its working'
+
+$ htpasswd -c auth babuni
+  password: Smile@12345#
+  reenter: Smile@12345#
+  
+  Note: password file name should be 'auth' if you providing other name it will not work
+        Example: htpasswd -c password babuni
+  
+$ kubectl create secret generic ingress-auth --from-file=auth -n ingress-test
+
+
+
+  
