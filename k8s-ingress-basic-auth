@@ -16,7 +16,7 @@ Pritical:
 $ deployed the ingress controller
 
 $ kubectl create deployment demo-01 --image nginx -n ingress-test
-$ kubectl expose deployment demo-01 --name demo-01-svc --port=8080 --target-port=80
+$ kubectl expose deployment demo-01 --name demo-01-svc --port=8080 --target-port=80 -n ingress-test
 $ kubectl get svc -n ingress-test
 $ kworker0> curl -v <svc-ip:8080> 'its working'
 
@@ -28,6 +28,54 @@ $ htpasswd -c auth babuni
         Example: htpasswd -c password babuni
   
 $ kubectl create secret generic ingress-auth --from-file=auth -n ingress-test
+$ kubectl edit secret/ingress-auth -n ingress-test
+
+apiVersion: v1
+data:
+  auth: YmFidW5pOiRhcHIxJDlKc2x4UlptJFRRWjYzWmNrci5WS0EyUmM2VFlYYi8K
+kind: Secret
+metadata:
+  creationTimestamp: "2023-05-10T10:08:23Z"
+  name: ingress-auth
+  namespace: ingress-test
+  resourceVersion: "1235391"
+  uid: 9c58f676-631b-450f-b41d-db77b714a794
+type: Opaque
+
+$ Create ingress file and apply it.
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-01
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: ingress-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Enter your credentials"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-01-svc
+            port:
+              number: 80
+
+$ kubectl apply -f ingress.yaml -n ingress-test
+$ kubectl get ingress -n ingress-test
+
+[root@services ~]# kc get ingress -n ingress-test
+NAME         CLASS   HOSTS   ADDRESS       PORTS   AGE
+ingress-01   nginx   *       10.1.100.197   80      48m
+[root@services ~]#
+
+$ from browser> 10.1.100.197 (Enter)
+  It will prompt for username and password
+
 
 
 
