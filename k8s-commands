@@ -48,10 +48,14 @@ $create role [deployment-> list, get,update,delete,create]
 $create rolebinding [username->reference role
 $oc auth can-i delete no
 $oc auth can-i create networkpolicy
-$oc auth can-i create pods —as dev-user
-$oc auth can-i delete no —as admin-user
-$oc auth can-i create po —as test-user —namespace demo
+$oc auth can-i create pods --as dev-user
+$oc auth can-i delete no --as admin-user
+$oc auth can-i create po --as test-user —namespace demo
 $oc —as user-demo get no 
+
+
+$ k auth can-i create po --as=system:serviceaccount:demo-01:sa-user
+$ k auth can-i create po --as=system:serviceaccount:demo-01:sa-user -n <namespace>
 
 $create a role [pod/deployment/scc, list,update,delete]
 $create a rolebinding [ref for above role and rolebindig]
