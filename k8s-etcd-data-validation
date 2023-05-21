@@ -1,4 +1,7 @@
 # get the etcd data using etcdctl command
 
 $ login to etcd po
-$ ETCDCTL_API=3 
+$ ETCDCTL_API=3 ETCDCTL_CACERT='' \
+  ETCDCTL_CERT='' \
+  ETCDCTL_KEY='' \
+  etcdctl --endpoints='' get /registry/secrets/demo-ns/demo-secret
