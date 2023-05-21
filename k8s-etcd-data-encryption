@@ -1,4 +1,5 @@
 # get the etcd data using etcdctl command
+https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
 
 # Etcd data validation before encrypt the etcd data base
 $ login to etcd po
