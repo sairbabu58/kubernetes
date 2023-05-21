@@ -1,7 +1,65 @@
 # get the etcd data using etcdctl command
 
+# Etcd data validation before encrypt the etcd data base
 $ login to etcd po
-$ ETCDCTL_API=3 ETCDCTL_CACERT='' \
-  ETCDCTL_CERT='' \
-  ETCDCTL_KEY='' \
-  etcdctl --endpoints='' get /registry/secrets/demo-ns/demo-secret
+$ ETCDCTL_API=3 etcdctl \
+   --cacert=/etc/kubernetes/pki/etcd/ca.crt   \
+   --cert=/etc/kubernetes/pki/etcd/server.crt \
+   --key=/etc/kubernetes/pki/etcd/server.key  \
+   get /registry/secrets/demo-ns/demo-secret
+   
+ $ ETCDCTL_API=3 etcdctl \
+   --cacert=/etc/kubernetes/pki/etcd/ca.crt   \
+   --cert=/etc/kubernetes/pki/etcd/server.crt \
+   --key=/etc/kubernetes/pki/etcd/server.key  \
+   get /registry/configmap/demo-ns/demo-cm
+   
+
+
+# Etcd encryption
+
+$ create a random base64 code  and copy it
+$ head -c 32 /dev/urandom | base64
+YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY=
+
+$ Create a yaml file etcd-encrypt-secret.yaml
+...
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+      - configmaps
+      - pandas.awesome.bears.example
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: <Paste Above BASE 64 ENCODED SECRET>
+      - identity: {}
+  ...
+  
+$ copy this file to /etc/kubernetes/pki/
+
+$ edit the  kube-apiserver.yaml file and update 
+$ vi /etc/kubernetes/manifests/kube-apiserver.yaml
+ spec:
+  containers:
+  - command:
+    - kube-apiserver
+    ...
+    - --encryption-provider-config=/etc/kubernetes/pki/etcd-encrypt-secret.yaml  # add this line
+    
+   --save--
+   
+ $ check the kube-apiserver pod status, if its not redeployed please restart it.
+    
+# Validation
+
+$ login to etcd po
+$ ETCDCTL_API=3 etcdctl \
+   --cacert=/etc/kubernetes/pki/etcd/ca.crt   \
+   --cert=/etc/kubernetes/pki/etcd/server.crt \
+   --key=/etc/kubernetes/pki/etcd/server.key  \
+   get /registry/secrets/demo-ns/demo-secret
+   
