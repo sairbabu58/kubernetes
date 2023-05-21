@@ -61,7 +61,7 @@ $ kubectl auth can-i create pods -n demo --as john
 $ kubectl auth can-i watch pods -n demo --as john
 
 
-Service accout:
+Service account:
 $ kubectl create sa demo-sa
 $ kubectl create clusterrole pv-role --verb=get --resource=persistentvolumes 
 $ kubectl create clusterrolebinding pv-binding --clusterrole=pv-role --serviceaccount=<namespace>:sa-name
