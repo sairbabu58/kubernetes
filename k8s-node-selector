@@ -34,3 +34,18 @@ $kubectl get pods -o wide
 #Step 5: Destroy Resources 
 
 $kubectl delete -f nodeselector.yaml
+
+
+------
+$vi nodeselector.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-pod
+    image: nginx
+  nodeName: worker2
+
