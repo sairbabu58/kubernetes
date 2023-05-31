@@ -4,8 +4,11 @@ metadata:
   name: test-cronjob
 spec:
   schedule: "*/1 * * * *"
+  suspend: false                  #true: cronjob will not excute // false: cronjob will execure based on the scheduled time
   jobTemplate:
     spec:
+      parallelism: 2             #How many job will run parallelly
+      completions: 2             # Run until succeed 2 job
       template:
         spec:
           containers:
