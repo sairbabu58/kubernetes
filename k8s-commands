@@ -20,6 +20,11 @@ $oc rollout history deployment/name
 $oc rollout history deployment/name —revision 1 
 $oc rollout undo deployment/name —revision 1 —to-revision=1
 
+$ kubectl create -f deployment.yaml --record
+$ kubectl rollout history deployment/httpd
+$ kubectl set image deployment/httpd container-name=nginx:1.2.3
+$ kubectl rollout history deployment/httpd
+
 
 
 
