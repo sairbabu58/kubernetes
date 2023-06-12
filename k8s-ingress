@@ -61,4 +61,8 @@ spec:
  $ kubectl get ingress -n <namespace>
  $ get the external IP 
  $ add the DNS record or use (external DNS deployment)
- $ from browser, use external IP/DNS (example: 29.100.45.71/app1 , 29.100.45.71/app2 )
+ $ from browser, use external IP/DNS (example: 29.100.45.71/app1 , 29.100.45.71/app2)
+ 
+ 
+ 
+ Note: Ingress Controller SVC IP can be NodePort or ExternalIP. If its external you need to configure MetalLB for that.
