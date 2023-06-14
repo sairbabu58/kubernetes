@@ -1,0 +1,10 @@
+# After enable this function, you can create NS and deploy application if NS is not existing before
+
+$ kubectl run nginx --image nginx -n demo [Not work, cause demo NS is not existing]
+
+$ vi /etc/kubernetes/manifest/kube-apiserver-pod.yaml
+    ...
+    - --enable-admission-plugins=NodeRestiction,NameSpaceAutoProvision
+    ...
+    
+  Wait for some times Api pods will get restart and try again same above command 
