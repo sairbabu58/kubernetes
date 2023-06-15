@@ -2,6 +2,7 @@
 
 > Create a deployment yaml file and mention the ACR registory name
  $ k8sworkshop.azurecr.io/demoapp:v1
+(Note: how to get this link: ACR-> Repository-> Choose your Image and click it-> Docker pull-> Get the details)
 > Deploy the application 
 $ kubectl apply -f app.yaml -n demo
 
