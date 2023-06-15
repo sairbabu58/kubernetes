@@ -1,6 +1,6 @@
 # How to convert your yaml code old apiVersion[v1alpha1] to new apiVersion[v1]
 
-$ kubectl convert -f nginx.yaml --output-version apps/v1 (what ever apiVersions, it will get convert to apps/v1)
+$ kubectl-convert -f nginx.yaml --output-version apps/v1 (what ever apiVersions, it will get convert to apps/v1)
 
 # How to install kubectl convert cli 
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-convert-plugin
