@@ -34,6 +34,8 @@ https://cert-manager.io/docs/installation/
 #K8S dashboard using lens (From your laptop install this tool and add your cluster. u will get k8s webui-bashboard. enable matrix)
 https://k8slens.dev/
 
+#Operator installation 
+https://operatorhub.io/
 
 
 
