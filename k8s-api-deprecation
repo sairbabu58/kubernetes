@@ -6,7 +6,7 @@ $ kubectl-convert -f nginx.yaml --output-version apps/v1 (what ever apiVersions,
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-convert-plugin
 
 # How to accept old apiVersion if that is deprecation
-$ vi /etc/kubernetes/kube-apiserver.yaml
+$ vi /etc/kubernetes/static-pod-resources/kube-apiserver.yaml
 ...
 - --runtime-config=<mention the apiversion>
 - --runtime-config=apps/alpha1
