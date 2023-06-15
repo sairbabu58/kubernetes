@@ -62,3 +62,32 @@ spec:
       port: 80
       targetPort: 8080
 ...
+
+
+
+
+# RHCNV Multiple port and protocal
+
+...
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - name: ssh
+      protocol: TCP
+      port: 22
+      targetPort: 22
+    - name: nfs
+      protocol: TCP
+      port: 2048
+      targetPort: 2049
+    - name: anyudp
+      protocol: UDP
+      port: 1105
+      targetPort: 1105
+...
