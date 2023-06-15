@@ -1,0 +1,16 @@
+# how to pull images from ACR to AKS when you will deploy a application
+
+> Create a deployment yaml file and mention the ACR registory name
+ $ k8sworkshop.azurecr.io/demoapp:v1
+> Deploy the application 
+$ kubectl apply -f app.yaml -n demo
+
+
+Note: If any image pullback issues due authentication 
+
+>> Go to the ACR registry 
+ -> access control(IAM) > Add a role assigment[add] 
+                                               > Role:                AcrPull
+                                               > Assign Access to:    (Auto fill: Azure AD user, group or service principal)
+                                               > Select:               k8sworkshop-agentpool #your clustername + agentpoll
+                       > Save
