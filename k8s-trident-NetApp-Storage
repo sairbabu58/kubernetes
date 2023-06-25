@@ -58,6 +58,17 @@ $ kubectl apply -f sc.yaml
 8) Create po
 9) Add pvc to po
 
+==============================
+
+
+Trident Installation and Configure using Helm and Kubectl
+https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy-helm.html
+
+
+
+
+
+
 
 
 
